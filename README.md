@@ -20,7 +20,8 @@ Met dit pakket van bestanden kun je meldingen op schermen bewerken en weergeven.
 ?>
 ```
 
-3. Maak één of meerdere schermen aan (zie onder).
+3. Creëer een map `content` en een map `screens` in de hoofdmap.
+4. Maak één of meerdere schermen aan (zie onder).
 
 ### Het aanmaken van schermen
 
