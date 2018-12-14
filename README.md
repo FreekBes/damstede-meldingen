@@ -57,3 +57,18 @@ Voor elk scherm moet in de map `/screens` een bestand worden aangemaakt waar de 
     "messages": []
 }
 ```
+
+## Het beheren van meldingen
+
+Om meldingen te beheren, ga je naar de website waar je het pakket hebt uitgepakt. Hier krijg je twee opties, om meldingen weer te geven en om meldingen te beheren. Selecteer de tweede. Log vervolgens in met het eerder aangemaakte wachtwoord. Je komt nu op een "portaal" uit waar meldingen kunnen worden beheerd.
+
+## Gebruikte onderdelen
+
+Voor dit pakket zijn de volgende onderdelen gebruikt:
+* [jQuery](https://jquery.com/)
+* [nProgress](http://ricostacruz.com/nprogress/)
+* [ZermeloRoosterPHP door wvanbreukelen](https://github.com/wvanbreukelen/ZermeloRoosterPHP)
+
+Omdat de versie die op Damstede gebruikt wordt, wordt gehost door [DigitalOcean](https://www.digitalocean.com), staat er in het beheerdersportaal een link naar deze host toe. Deze kun je natuurlijk weghalen of vervangen met jouw eigen host.
+
+Ook staan er nog twee knoppen; eentje verwijst naar [shellinabox](https://help.ubuntu.com/community/shellinabox) en de andere verwijst naar [Webmin](http://www.webmin.com). Deze programma's kun je installeren mocht je een Linux-distributie gebruiken, maar dit is niet vereist.
