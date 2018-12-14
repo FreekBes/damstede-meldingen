@@ -1,5 +1,7 @@
 # damstede-meldingen
 
+![Een voorbeeld van een melding](https://github.com/FreekBes/damstede-meldingen/blob/master/imgs/melding.png "Een voorbeeld van een melding")
+
 Met dit pakket van bestanden kun je meldingen op schermen bewerken en weergeven. Het pakket biedt ondersteuning aan meerdere schermen en meerdere locaties.
 
 ## Installatie
