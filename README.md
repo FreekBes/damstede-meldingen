@@ -62,6 +62,8 @@ Voor elk scherm moet in de map `/screens` een bestand worden aangemaakt waar de 
 
 Om meldingen te beheren, ga je naar de website waar je het pakket hebt uitgepakt. Hier krijg je twee opties, om meldingen weer te geven en om meldingen te beheren. Selecteer de tweede. Log vervolgens in met het eerder aangemaakte wachtwoord. Je komt nu op een "portaal" uit waar meldingen kunnen worden beheerd.
 
+![Meldingenportaal screenshot](https://github.com/FreekBes/damstede-meldingen/blob/master/imgs/portal.png "Het meldingenportaal")
+
 ## Gebruikte onderdelen
 
 Voor dit pakket zijn de volgende onderdelen gebruikt:
