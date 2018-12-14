@@ -1,0 +1,163 @@
+html {
+	display: block;
+	width: 100%;
+	height: 100%;
+	overflow-x: hidden;
+	overflow-y: hidden;
+}
+
+html {
+	padding: 0px;
+	margin: 0px;
+}
+
+body {
+	background-color: #333333;
+	color: #EDEDED;
+	font-family: Roboto, Helvetica, Verdana, Arial, Sans-Serif;
+	font-size: 48px;
+	box-sizing: border-box;
+	padding: 0px 36px 24px 36px;
+	margin: 0px;
+	width: 100%;
+	height: 100%;
+	user-select: none;
+	letter-spacing: 1px;
+}
+
+h1 {
+	font-size: 64px;
+}
+
+.msgcontainer {
+	display: block;
+	height: 100%;
+}
+
+.msgcontainer.centered {
+	text-align: center;
+}
+
+.msgcenter {
+	text-align: center;
+}
+
+/*
+.msgimage {
+	display: inline-block;
+	max-width: 100%;
+	max-height: 80%;
+}
+*/
+
+.msgimage {
+	display: block;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	width: 100%;
+	height: 100%;
+	background: #000000;
+	object-fit: contain;
+}
+
+.msgvideo {
+	display: block;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	width: 100%;
+	height: 100%;
+	background: #000000;
+}
+
+.msgcounter {
+	display: block;
+	position: fixed;
+	bottom: 0px;
+	right: 0px;
+	padding: 24px 36px;
+	z-index: 100;
+	text-shadow: 0 0 3px #000;
+	letter-spacing: 4px;
+}
+
+#not-title {
+	margin: 0px;
+	padding: 42px 0px 32px 0px;
+}
+
+#content {
+	padding: 0px 0px 32px 0px;
+}
+
+.rooster {
+	width: 100%;
+	font-size: 40px;
+	letter-spacing: 1px;
+}
+
+.rooster tr:nth-child(even) {
+	background: rgba(255,255,255,0.1);
+}
+
+.rooster tr:nth-child(odd) {
+	background: rgba(255,255,255,0.2);
+}
+
+.rooster tr.recent {
+	background: rgba(255,255,0,0.3) !important;
+}
+
+.rooster td {
+	padding: 1px 8px;
+	vertical-align: text-top;
+}
+
+.rooster th {
+	padding: 8px;
+	font-weight: bold;
+	background: rgba(255,255,255,0.3);
+	vertical-align: middle;
+}
+
+.rooster .nowrap {
+	white-space: nowrap;
+}
+
+#msgoverflow {
+	display: block;
+	position: fixed;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	height: 120px;
+	background: linear-gradient(rgba(51,51,51,0), rgba(51,51,51,0.75), rgba(51,51,51,1));
+}
+
+#spinner {
+	display: inline-block;
+	width: 120px;
+	height: 120px;
+	padding: 0px;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	
+	border: 12px solid rgba(0,0,0,0);
+	border-top: 12px solid;
+	border-top-color: #4253F4;
+	transition: border-top-color 1s;
+	border-radius: 60px;
+	animation: spin 0.65s linear infinite;
+}
+
+@keyframes spin {
+	0% { transform: rotate(0deg); border-top-color: #4253F4; }
+	50% { transform: rotate(180deg); border-top-color: #7a86f7; }
+	100% { transform: rotate(360deg); border-top-color: #4253F4; }
+}
