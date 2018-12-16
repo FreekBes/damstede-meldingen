@@ -67,6 +67,12 @@ Om meldingen te beheren, ga je naar de website waar je het pakket hebt uitgepakt
 
 ![Meldingenportaal screenshot](https://github.com/FreekBes/damstede-meldingen/blob/master/imgs/portal.png "Het meldingenportaal")
 
+## Het weergeven van meldingen op TV-schermen
+
+Om meldingen weer te geven op TV-schermen, heb je verschillende opties. Je kunt voor elk scherm een aparte computer neerzetten die de meldingen voor dat scherm weergeeft. Wat echter een goedkopere optie is, is om voor elk scherm een Chromecast aan te schaffen, en vanaf één computer naar alle chromecasts tegelijk casten. Dit is niet zomaar mogelijk (Chrome limiteert het casten tot maximaal 1 apparaat). Er is echter wel een makkelijke omweg beschikbaar die het wel mogelijk maakt. Uitleg en instructies hiervoor kun je [hier](https://troypoint.com/chromecast-to-multiple-devices/) vinden.
+
+Voor het weergeven van meldingen ga je naar de website waar je het pakket hebt uitgepakt, selecteer "Weergeef meldingen", kies het gewenste scherm en klaar!
+
 ## Gebruikte onderdelen
 
 Voor dit pakket zijn de volgende onderdelen gebruikt:
