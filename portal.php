@@ -368,8 +368,8 @@
 							?>
 							<tr class="notsrow<?PHP echo $msg["extra_class"]; ?>">
 								<td class="center"><?PHP echo $screen["name"]; ?> (<?PHP echo $screen["location"]; ?>)</td>
-								<td class="center"><?PHP echo date("d-m-Y H:i:s", $msg["added"]); ?></td>
-								<td class="center"><?PHP echo date("d-m-Y H:i:s", $msg["modified"]); ?></td>
+								<td class="center"><?PHP echo date("d-m-Y H:i", $msg["added"]); ?></td>
+								<td class="center"><?PHP echo date("d-m-Y H:i", $msg["modified"]); ?></td>
 								<td class="center"><?PHP if (!empty($msg["start-date"])) { echo date("d-m-Y", $msg["start-date"]); } else { echo "Niet ingesteld"; } ?></td>
 								<td class="center"><?PHP if (!empty($msg["end-date"])) { echo date("d-m-Y", $msg["end-date"]); } else { echo "Niet ingesteld"; } ?></td>
 								<?PHP if ($msg["type"] == "default") { ?>
@@ -465,11 +465,11 @@
 											<table class="preview-info">
 												<tr>
 													<th>Toegevoegd</th>
-													<td><?PHP echo date("d-m-Y H:i:s", $msg["added"]); ?></td>
+													<td><?PHP echo date("d-m-Y H:i", $msg["added"]); ?></td>
 												</tr>
 												<tr>
 													<th>Laatst gewijzigd</th>
-													<td><?PHP echo date("d-m-Y H:i:s", $msg["modified"]); ?></td>
+													<td><?PHP echo date("d-m-Y H:i", $msg["modified"]); ?></td>
 												</tr>
 												<tr>
 													<th>Startdatum</th>
