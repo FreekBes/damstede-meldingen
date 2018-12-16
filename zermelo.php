@@ -116,11 +116,11 @@
 	function lessonsShortened($json, $lesson = null) {
 		global $shortenedLessons;
 		
-		if (count($json) < 0) {
-			return false;
-		}
-		
 		if (empty($lesson)) {
+			if (empty($json)) {
+				return false;
+			}
+
 			for ($i = 0; $i < count($json); $i++) {
 				if (strpos($json[$i]["changeDescription"], "Deze les is verplaatst (komt van ") == 0) {
 					$lesson = $json[$i];
