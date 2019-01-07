@@ -128,7 +128,9 @@
 	<style><?PHP readfile("meldingen.css"); ?></style>
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 	<link rel="icon" type="image/ico" href="favicon.ico" />
-	<meta http-equiv="refresh" content="300" />
+	<?PHP if (!isset($_GET["preview"])) { ?>
+		<meta http-equiv="refresh" content="300" />
+	<?PHP } ?>
 	<script src="import/jquery-3.3.1.min.js"></script>
 	<script>
 	// Determines if the passed element is overflowing its bounds, either vertically or horizontally.
