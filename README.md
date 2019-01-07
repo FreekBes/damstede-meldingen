@@ -6,7 +6,7 @@ Met dit pakket van bestanden kun je meldingen op schermen bewerken en weergeven.
 
 ## Installatie
 
-1. Download deze repository en plaats deze in een map op een webserver die PHP ondersteunt. Het pakket is geschreven in PHP versie 7.2.
+1. [Download deze repository](https://github.com/FreekBes/damstede-meldingen/archive/master.zip) en pak deze uit in een map op een webserver die PHP ondersteunt. Het pakket is geschreven in PHP versie 7.2.
 2. Maak in de map `/import` een bestand aan genaamd `nogit.php`. Neem de volgende content hierin over maar vervang hierbij de strings met de benodigde waarden.
 
 ```php
@@ -53,13 +53,17 @@ Om schermen aan te maken, maak je in de map waarin het pakket is uitgepakt het b
 }
 ```
 
-Voor elk scherm moet in de map `/screens` een bestand worden aangemaakt waar de `file`-key in `screens.json` naar verwijst. Deze moet bestaan uit de volgende content:
+Let op het feit dat het ID voor een scherm twee keer moet worden aangegeven, één keer als key en één keer als `id`. Deze twee waarden mogen niet van elkaar verschillen.
+
+Voor elk scherm moet in de map `/screens` een bestand worden aangemaakt waar de `file`-key in `screens.json` naar verwijst. Elk van deze bestanden moet bestaan uit de volgende content:
 
 ```json
 {
     "messages": []
 }
 ```
+
+Via het meldingenportaal worden deze bestanden automatisch aangevuld met berichten die later op de schermen zullen verschijnen.
 
 ## Het beheren van meldingen
 
@@ -70,6 +74,8 @@ Om meldingen te beheren, ga je naar de website waar je het pakket hebt uitgepakt
 ## Het weergeven van meldingen op TV-schermen
 
 Om meldingen weer te geven op TV-schermen, heb je verschillende opties. Je kunt voor elk scherm een aparte computer neerzetten die de meldingen voor dat scherm weergeeft. Wat echter een goedkopere optie is, is om voor elk scherm een Chromecast aan te schaffen, en vanaf één computer naar alle chromecasts tegelijk casten. Dit is niet zomaar mogelijk (Chrome limiteert het casten tot maximaal 1 apparaat). Er is echter wel een makkelijke omweg beschikbaar die het wel mogelijk maakt. Uitleg en instructies hiervoor kun je [hier](https://troypoint.com/chromecast-to-multiple-devices/) vinden.
+
+Een andere mogelijkheid is om te werken met Raspberry Pi's, maar hier is wel ervaring voor nodig. Ook kun je werken met Apple TV's, mocht je een Apple-fanaat zijn. Eigenlijk worden alle apparaten die websites kunnen weergeven ondersteund. Je zou zelfs, bij wijze van spreken, voor een klein prijsje een oude Nintendo Wii op de kop kunnen tikken en deze ervoor gebruiken (in theorie, dit is niet getest en ik beveel het ook niet echt aan eigenlijk).
 
 Voor het weergeven van meldingen ga je naar de website waar je het pakket hebt uitgepakt, selecteer "Weergeef meldingen", kies het gewenste scherm en klaar!
 
@@ -83,3 +89,36 @@ Voor dit pakket zijn de volgende onderdelen gebruikt:
 Omdat de versie die op Damstede gebruikt wordt, wordt gehost door [DigitalOcean](https://www.digitalocean.com), staat er in het beheerdersportaal een link naar deze host toe. Deze kun je natuurlijk weghalen of vervangen met jouw eigen host.
 
 Ook staan er nog twee knoppen; eentje verwijst naar [shellinabox](https://help.ubuntu.com/community/shellinabox) en de andere verwijst naar [Webmin](http://www.webmin.com). Deze programma's kun je installeren mocht je een Linux-distributie gebruiken, maar dit is niet vereist.
+
+## Foutoplossing
+
+Hier staan een aantal veel voorkomende fouten met oplossingen.
+
+### Er ging iets mis!-melding
+
+Als er constant een Er ging iets mis!-melding in beeld komt bij het weergeven van meldingen, zit er ergens een fout in de PHP-code. Controleer of je gebruik maakt van de juiste PHP-versie (7.2). Indien je verstand hebt van PHP-code kun je natuurlijk ook de code zelf debuggen, door bovenin elk PHP-bestand `error_reporting(E_ALL); ini_set('display_errors', 1);` te schrijven.
+
+### Wachtwoord is constant onjuist
+
+Als het wachtwoord constant onjuist is, is het misschien het handigst om deze te resetten. Doe dit als volgt: maak een PHP-bestand aan met hierin:
+
+```php
+$salt = 'plaats jouw salt hier';
+echo crypt('plaats het nieuwe wachtwoord hier', $salt);
+```
+
+Voer deze code uit in een terminal of webbrowser. De uitkomst is het nieuwe wachtwoord, die als `$password` moet worden ingesteld in `nogit.php` (map `import`).
+
+Wat uitleg: de salt wordt gebruikt als extra beveiliging voor het hashen van het wachtwoord. Dit mag van alles zijn.
+
+### Meldingen kunnen niet worden toegevoegd, gewijzigd of verwijderd via het portal
+
+Zorg ervoor dat de mappen `screens` en `content` lees- en schrijfbaar zijn door PHP. Dit verschilt per operating system. In Linux kun je hiervoor het commando `chmod` gebruiken: `$ chmod -R 0766 /screens` en `$ chmod -R 0766 /content`.
+
+### De Zermelo-integratie werkt niet
+
+De Zermelo-integratie is nogal instabiel. Zorg ervoor dat de gegevens in `nogit.php` (map `import`) kloppen. Als dit al het geval is, controleer dan of je met de gegevens wel kunt inloggen op Zermelo Portal zelf.
+
+### Mijn video wordt na 5 minuten afgekapt
+
+Na 5 minuten worden alle meldingen automatisch gerefreshed, uit voorzorg. Dit is om stilstaande beelden te voorkomen bij errors in het programma. Om deze reden is het verstandig geen video's die langer dan 5 minuten duren te gebruiken als melding (überhaupt is dat misschien niet zo handig).
