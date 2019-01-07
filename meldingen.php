@@ -73,15 +73,18 @@
 	}
 	
 	if (!isset($_GET["preview"])) {
-		for ($i = 0; $i < count($nots); $i++) {
+		$c = count($nots);
+		for ($i = 0; $i < $c; $i++) {
 			if (!empty($nots[$i]["start-date"])) {
 				if ($nots[$i]["start-date"] > time()) {
+					$nots[$i]["underdue"] = true;
 					unset($nots[$i]);
 					continue;
 				}
 			}
 			if (!empty($nots[$i]["end-date"])) {
 				if ($nots[$i]["end-date"] + 86400 < time()) {
+					$nots[$i]["overdue"] = true;
 					unset($nots[$i]);
 					continue;
 				}
@@ -136,9 +139,12 @@
 </head>
 <body onload="startCountdown();" style="<?PHP if (isset($_GET["preview"])) { echo "zoom: 0.26;"; } ?>">
 	<?PHP if (count($nots) > 0) { ?>
-		<?PHP 
-			$msg = $nots[$num]; 
+		<?PHP
+			$msg = $nots[$num];
 		?>
+		<script>
+			console.log(JSON.parse(`<?PHP echo json_encode($msg, JSON_UNESCAPED_UNICODE); ?>`.replace(/\s/g, ' ')));
+		</script>
 		<script>
 			var num = <?PHP echo $num; ?>;
 			var total = <?PHP echo count($nots); ?>;
