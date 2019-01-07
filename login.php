@@ -1,5 +1,12 @@
 <?PHP
 	session_start();
+
+	function error_found(){
+		$_SESSION["error_last_page"] = $_SERVER['REQUEST_URI'];
+		header("Location: error.php", 301);
+		exit();
+	}
+	set_error_handler('error_found', E_ALL);
 	
 	require_once("import/nogit.php");
 	

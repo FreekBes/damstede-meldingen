@@ -1,4 +1,13 @@
 <?PHP
+	session_start();
+
+	function error_found(){
+		$_SESSION["error_last_page"] = $_SERVER['REQUEST_URI'];
+		header("Location: error.php", 301);
+		exit();
+	}
+	set_error_handler('error_found', E_ALL);
+
 	// verkrijg alle beschikbare schermen
 	$screens = json_decode(file_get_contents("screens.json"), true);
 	
@@ -119,6 +128,7 @@
 	<style><?PHP readfile("meldingen.css"); ?></style>
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 	<link rel="icon" type="image/ico" href="favicon.ico" />
+	<meta http-equiv="refresh" content="300" />
 	<script src="import/jquery-3.3.1.min.js"></script>
 	<script>
 	// Determines if the passed element is overflowing its bounds, either vertically or horizontally.
