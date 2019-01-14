@@ -33,21 +33,21 @@ Om schermen aan te maken, maak je in de map waarin het pakket is uitgepakt het b
 		"id": "docenten",
 		"name": "Docentenkamer",
 		"location": "Hoofdgebouw",
-		"file": "screens/docenten.json",
+		"file": "screens\/docenten.json",
 		"last-usage": 0
 	},
 	"leerlingen": {
 		"id": "leerlingen",
 		"name": "Leerlingen",
 		"location": "Hoofdgebouw",
-		"file": "screens/leerlingen.json",
+		"file": "screens\/leerlingen.json",
 		"last-usage": 0
 	},
 	"tweedelocatie": {
 		"id": "tweedelocatie",
 		"name": "Leerlingen",
 		"location": "Tweede Locatie",
-		"file": "screens/tlleerlingen.json",
+		"file": "screens\/tlleerlingen.json",
 		"last-usage": 0
 	}
 }
