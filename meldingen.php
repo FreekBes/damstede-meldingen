@@ -316,12 +316,15 @@
 								var now = new Date();
 								for (i = 0; i < response["data"].length; i++) {
 									var lesuur = response["data"][i];
-									rooster += "<tr";
+									rooster += "<tr class='";
 									if (lesuur['groups'][0] != '-') {
 										if (parseInt(lesuur["lastModified"]) > (now.getTime() - 3600000) / 1000) {
-											rooster += " class='recent'";
+											rooster += " recent";
 										}
-										rooster += ">";
+										if (lesuur['changeDescription'] == "Les vervalt") {
+											rooster += ' cancelled';
+										}
+										rooster += "'>";
 										rooster += "<td class='nowrap'>";
 										for (j = 0; j < lesuur["groups"].length; j++) {
 											rooster += lesuur["groups"][j].toUpperCase();
@@ -372,12 +375,15 @@
 								var now = new Date();
 								for (i = 0; i < response["data"].length; i++) {
 									var lesuur = response["data"][i];
-									rooster += "<tr";
+									rooster += "<tr class='";
 									if (lesuur['teachers'][0] != '-') {
 										if (parseInt(lesuur["lastModified"]) > (now.getTime() - 3600000) / 1000) {
-											rooster += " class='recent'";
+											rooster += " recent";
 										}
-										rooster += ">";
+										if (lesuur['changeDescription'] == "Les vervalt") {
+											rooster += ' cancelled';
+										}
+										rooster += "'>";
 										rooster += "<td class='nowrap'>";
 										for (j = 0; j < lesuur["teachers"].length; j++) {
 											rooster += lesuur["teachers"][j].toUpperCase();
