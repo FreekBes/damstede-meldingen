@@ -20,7 +20,7 @@
             setTimeout(function() {
                 window.location.href = window.location.origin + '<?PHP echo $_SESSION['error_last_page']; ?>';
             }, 15000);
-            </script>`
+            </script>
         <?PHP } ?>
     </head>
     <body>
