@@ -115,6 +115,14 @@ Wat uitleg: de salt wordt gebruikt als extra beveiliging voor het hashen van het
 
 Zorg ervoor dat de mappen `screens` en `content` lees- en schrijfbaar zijn door PHP. Dit verschilt per operating system. In Linux kun je hiervoor het commando `chmod` gebruiken: `$ chmod -R 0766 /screens` en `$ chmod -R 0766 /content`.
 
+### Ik kan geen start- en einddatum wijzigen voor videomeldingen
+
+Bij videomeldingen staat momenteel geen knop om een melding te bewerken. Dit betekent dat start- en einddatums voor videomeldingen tevens niet bewerkbaar zijn. Omdat videomeldingen zo weinig worden gebruikt, is er nog niet gekeken naar een oplossing hiervoor. Als je alsnog deze twee waardes aan moet passen, verwijder de melding dan en voeg deze opnieuw toe met de juiste data (denk er om dat dit even kan duren bij videomeldingen i.v.m. de bestandsgrootte van video).
+
+### Er gebeurt niets als ik op de edit- of verwijderknop druk bij een melding
+
+Dit gebeurt nog wel eens wanneer er gebruik is gemaakt van enkele of dubbele aanhalingstekens. Als dit gebeurt, [rapporteer dit dan als issue](https://github.com/FreekBes/damstede-meldingen/issues/new) in deze repository, zodat dit zo snel mogelijk kan worden opgelost.
+
 ### De Zermelo-integratie werkt niet
 
 De Zermelo-integratie is nogal instabiel. Zorg ervoor dat de gegevens in `nogit.php` (map `import`) kloppen. Als dit al het geval is, controleer dan of je met de gegevens wel kunt inloggen op Zermelo Portal zelf.
