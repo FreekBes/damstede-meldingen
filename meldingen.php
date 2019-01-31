@@ -48,6 +48,7 @@
 	if (!isset($screens[$_GET["screen"]]) && $_GET["screen"] != "all") {
 		// scherm niet gevonden
 		echo "Scherm niet gevonden. Klik <a href='meldingen.php'>hier</a> om terug te gaan.";
+		error_found();
 		die();
 	}
 	
