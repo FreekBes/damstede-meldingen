@@ -326,6 +326,7 @@
 		<h1 id="pagetitle">Alle meldingen voor alle schermen</h1>
 		<div id="pageoptions">
 			<div id="digitalocean" title="DigitalOcean Control Panel" onclick="window.open('https://cloud.digitalocean.com/account/billing?i=f9959d');"><img src="import/digitalocean.png" style="height: 20px;"/></div>
+			<div id="github" title="GitHub-repository" onclick="window.open('https://github.com/FreekBes/damstede-meldingen');"><img src="import/github.png" style="height: 20px;"/></div>
 			<div id="terminal" title="Linux-terminal openen" onclick="window.open('https://' + window.location.host + ':12320');">&#x2265;</div>
 			<div id="webmin" title="Webmin (serverbeheer) openen" onclick="window.open('https://' + window.location.host + ':10000');">&#x2699;</div>
 			<?PHP if ($_SESSION["view"] == "previews") { ?>
