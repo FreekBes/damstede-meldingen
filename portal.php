@@ -796,9 +796,19 @@
 	
 	<script>
 	// log uit na 10 minuten
-	setTimeout(function() {
+	var logoutTimer = setTimeout(function() {
 		window.location.href = "/logout.php?by=auto";
 	}, 600000);
+	function resetLogoutTimer() {
+		console.log("Logout timeout resetten...");
+		clearTimeout(logoutTimer);
+		logoutTimer = null;
+		logoutTimer = setTimeout(function() {
+			window.location.href = "/logout.php?by=auto";
+		}, 600000);
+	}
+	document.onkeydown = resetLogoutTimer;
+	document.onmousedown = resetLogoutTimer;
 	</script>
 	</body>
 </html>
