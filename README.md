@@ -86,13 +86,17 @@ Voor dit pakket zijn de volgende onderdelen gebruikt:
 * [nProgress](http://ricostacruz.com/nprogress/)
 * [ZermeloRoosterPHP door wvanbreukelen](https://github.com/wvanbreukelen/ZermeloRoosterPHP)
 
-Omdat de versie die op Damstede gebruikt wordt, wordt gehost door [DigitalOcean](https://www.digitalocean.com), staat er in het beheerdersportaal een link naar deze host toe. Deze kun je natuurlijk weghalen of vervangen met jouw eigen host.
+Omdat de versie die op het Damstede Lyceum gebruikt wordt, wordt gehost door [DigitalOcean](https://www.digitalocean.com), staat er in het beheerdersportaal een link naar deze host toe. Deze kun je natuurlijk weghalen of vervangen met jouw eigen host.
 
-Ook staan er nog twee knoppen; eentje verwijst naar [shellinabox](https://help.ubuntu.com/community/shellinabox) en de andere verwijst naar [Webmin](http://www.webmin.com). Deze programma's kun je installeren mocht je een Linux-distributie gebruiken, maar dit is niet vereist.
+Ook staan er nog drie knoppen; eentje verwijst naar [shellinabox](https://help.ubuntu.com/community/shellinabox) een tweede verwijst naar [Webmin](http://www.webmin.com). Deze programma's kun je installeren mocht je een Linux-distributie gebruiken, maar dit is niet vereist. De laatste knop brengt je naar deze GitHub-repository.
 
 ## Foutoplossing
 
 Hier staan een aantal veel voorkomende fouten met oplossingen.
+
+### Ik gebruik Mozilla Firefox en het beheerdersportaal werkt niet goed
+
+Het meldingsportaal is geoptimaliseerd voor gebruik in Webkit-browsers. Dit betekent dat het portaal optimaal werkt in Google Chrome, Opera en Microsoft Edge. Het wordt dan ook aangeraden om één van deze browsers te gebruiken.
 
 ### Er ging iets mis!-melding
 
