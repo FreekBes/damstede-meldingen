@@ -334,11 +334,7 @@
 											}
 										}
 										rooster += "</td>";
-										rooster += "<td class='nowrap'>"+lesuur['startTimeSlot']+"<sup>e</sup> uur <small>(";
-										var d = new Date(0);
-										d.setUTCSeconds(parseInt(lesuur["start"]));
-										rooster += pad(d.getHours())+":"+pad(d.getMinutes());
-										rooster += ")</small></td>";
+										rooster += "<td class='nowrap'>"+lesuur['startTimeSlot']+"<sup>e</sup> uur</td>";
 										rooster += "<td class='nowrap'>";
 										for (j = 0; j < lesuur["subjects"].length; j++) {
 											rooster += lesuur["subjects"][j];
@@ -393,11 +389,7 @@
 											}
 										}
 										rooster += "</td>";
-										rooster += "<td class='nowrap'>"+lesuur['startTimeSlot']+"<sup>e</sup> uur <small>(";
-										var d = new Date(0);
-										d.setUTCSeconds(parseInt(lesuur["start"]));
-										rooster += pad(d.getHours())+":"+pad(d.getMinutes());
-										rooster += ")</small></td>";
+										rooster += "<td class='nowrap'>"+lesuur['startTimeSlot']+"<sup>e</sup> uur</td>";
 										rooster += "<td class='nowrap'>";
 										for (j = 0; j < lesuur["subjects"].length; j++) {
 											rooster += lesuur["subjects"][j];
