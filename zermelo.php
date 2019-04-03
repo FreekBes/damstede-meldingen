@@ -72,11 +72,12 @@
 		}
 		$shortened = lessonsShortened(null, $a);
 		return (
-			empty($a["changeDescription"]) ||
-			count($a["groups"]) < 1 ||
-			count($a["teachers"]) < 1 ||
-			count($a["subjects"]) < 1 ||
-			count($a["locations"]) < 1 ||
+			empty($a["changeDescription"]) || false
+			// count($a["groups"]) < 1 ||
+			// count($a["teachers"]) < 1 ||
+			// count($a["subjects"]) < 1 ||
+			// count($a["locations"]) < 1 ||
+			/*
 			$a["end"] < time() - 600 ||
 			(
 				$a["cancelled"] === false &&
@@ -90,6 +91,7 @@
 				strpos($a["changeDescription"], "Deze les is verplaatst (komt van ") == 0 &&
 				strpos($a["changeDescription"], "lokaal is gewijzigd") === false
 			)
+			*/
 		);
 	}
 	
@@ -235,11 +237,11 @@
 	try {
 		$date = "today";
 		if (!isset($_GET["me"])) {
-			// enkel roosterwijzigingen voor leerling 343443 zelf als GET me is gegeven in de URL
+			// roosterwijzigingen voor alle leerlingen op Damstede
 			$grid = $zermelo->getSchoolGrid('343443', strtotime($date), strtotime($date.=" + 1 day"));
 		}
 		else {
-			// roosterwijzigingen voor alle leerlingen op Damstede
+			// enkel roosterwijzigingen voor leerling 343443 zelf als GET me is gegeven in de URL
 			$grid = $zermelo->getStudentGrid('343443', strtotime($date), strtotime($date.=" + 1 day"));
 		}
 		
@@ -266,6 +268,7 @@
 		if ($shortenedLessons) {
 			$json = shortenAllUnshorted($json);
 			
+			/*
 			$shortenedMessage = (object) array(
 				'lastModified' => time(),
 				'groups' => array('-'),
@@ -279,6 +282,7 @@
 				'changeDescription' => 'Let op: er geldt vandaag een '.$lessonDurShortened.'-minutenrooster!'
 			);
 			array_unshift($json, $shortenedMessage);
+			*/
 			returnData("Lesdata gevonden met een verkort rooster", $json);
 		}
 		else {
