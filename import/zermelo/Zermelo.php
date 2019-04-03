@@ -134,7 +134,7 @@ class ZermeloAPI
 
 		// Call the API
 
-		$raw = $this->callApi("api/v2/appointments", array('access_token' => $token, 'start' => $start, 'end' => $end, 'branch' => 'damstede'));
+		$raw = $this->callApi("api/v2/appointments", array('access_token' => $token, 'start' => $start, 'end' => $end, 'branchOfSchool' => '701'));
 
 		// Process the results
 
