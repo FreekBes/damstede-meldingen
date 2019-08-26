@@ -608,7 +608,7 @@
 								<input type="radio" id="default" name="type" value="default" checked /><label for="default">Tekst</label>
 								<input type="radio" id="image" name="type" value="image" /><label for="image">Afbeelding</label>
 								<input type="radio" id="video" name="type" value="video" /><label for="video">Video</label>
-								<input type="radio" id="zermelo" name="type" value="zermelo" /><label for="zermelo">Roosterwijzigingen</label>
+								<input type="radio" id="zermelo" name="type" value="zermelo" disabled title="Momenteel niet beschikbaar" /><label title="Momenteel niet beschikbaar" for="zermelo" style="cursor: not-allowed;">Roosterwijzigingen</label>
 							</td>
 							<script>
 							var notType = document.getElementsByName("type");
