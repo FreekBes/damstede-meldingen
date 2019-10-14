@@ -15,8 +15,7 @@ Met dit pakket van bestanden kun je meldingen op schermen bewerken en weergeven.
 	$hashedPassword = "plaats hier een wachtwoord gehashed met bovenstaande salt (gebruik de crypt-functie in PHP)";
 	
 	$zermeloSchool = "plaats hier het subdomein van de school op Zermelo (dus als het domein damstedelyceum.zportal.nl is, voer je hier pascalcollegedamstede in)";
-	$zermeloUsername = "plaats hier een gebruikersnaam van Zermelo";
-	$zermeloPassword = "plaats hier een wachtwoord van Zermelo";
+	$zermeloApiToken = "plaats hier een API-token van een Zermelo-account (verkrijgbaar via Beheer > Admin-paneel > API tokens)";
 ?>
 ```
 
