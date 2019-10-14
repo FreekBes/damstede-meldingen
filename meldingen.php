@@ -326,7 +326,7 @@
 											rooster += ' cancelled';
 										}
 										rooster += "'>";
-										rooster += "<td class='nowrap'>";
+										rooster += "<td>";
 										for (j = 0; j < lesuur["groups"].length; j++) {
 											rooster += lesuur["groups"][j].toUpperCase();
 											if (j != lesuur["groups"].length - 1) {
@@ -335,7 +335,7 @@
 										}
 										rooster += "</td>";
 										rooster += "<td class='nowrap'>"+lesuur['startTimeSlot']+"<sup>e</sup> uur</td>";
-										rooster += "<td class='nowrap'>";
+										rooster += "<td>";
 										for (j = 0; j < lesuur["subjects"].length; j++) {
 											rooster += lesuur["subjects"][j];
 											if (j != lesuur["subjects"].length - 1) {
@@ -381,7 +381,7 @@
 											rooster += ' cancelled';
 										}
 										rooster += "'>";
-										rooster += "<td class='nowrap'>";
+										rooster += "<td>";
 										for (j = 0; j < lesuur["teachers"].length; j++) {
 											rooster += lesuur["teachers"][j].toUpperCase();
 											if (j != lesuur["teachers"].length - 1) {
@@ -390,7 +390,7 @@
 										}
 										rooster += "</td>";
 										rooster += "<td class='nowrap'>"+lesuur['startTimeSlot']+"<sup>e</sup> uur</td>";
-										rooster += "<td class='nowrap'>";
+										rooster += "<td>";
 										for (j = 0; j < lesuur["subjects"].length; j++) {
 											rooster += lesuur["subjects"][j];
 											if (j != lesuur["subjects"].length - 1) {

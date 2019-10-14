@@ -16,7 +16,7 @@ Met dit pakket van bestanden kun je meldingen op schermen bewerken en weergeven.
 	
 	$zermeloSchool = "plaats hier het subdomein van de school op Zermelo (dus als het domein damstedelyceum.zportal.nl is, voer je hier damstedelyceum in)";
 	$zermeloApiToken = "plaats hier een API-token van een Zermelo-account (verkrijgbaar via Beheer > Admin-paneel > API tokens)";
-
+	$zermeloBranchOfSchool = "plaats hier voor welke branch van de school de roosterwijzigingen moeten worden weergegeven (bijv. 701)";
 ?>
 ```
 
@@ -84,7 +84,6 @@ Voor het weergeven van meldingen ga je naar de website waar je het pakket hebt u
 Voor dit pakket zijn de volgende onderdelen gebruikt:
 * [jQuery](https://jquery.com/)
 * [nProgress](http://ricostacruz.com/nprogress/)
-* [ZermeloRoosterPHP door wvanbreukelen](https://github.com/wvanbreukelen/ZermeloRoosterPHP)
 
 Omdat de versie die op het Damstede Lyceum gebruikt wordt, wordt gehost door [DigitalOcean](https://www.digitalocean.com), staat er in het beheerdersportaal een link naar deze host toe. Deze kun je natuurlijk weghalen of vervangen met jouw eigen host.
 
