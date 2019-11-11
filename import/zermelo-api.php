@@ -30,7 +30,7 @@
         }
 
         // this function gets run on construction of a class instance
-        function __construct() {
+        private function __construct() {
             $this->initializeCacheDir();
         }
 
