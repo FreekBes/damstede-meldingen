@@ -63,7 +63,7 @@
 
         // get the api url
         private function getApiUrl() {
-            return "https://".$this->subdomain.".zportal.nl/api/v3/appointments?access_token=".urlencode($this->accessToken)."&start=".$this->getStartTimestamp()."&end=".$this->getEndTimestamp()."&branchOfSchool=".$this->branch."&fields=start,end,groups,lastModified,changeDescription,startTimeSlot,endTimeSlot,subjects,teachers,branchOfSchool,locations";
+            return "https://".$this->subdomain.".zportal.nl/api/v3/appointments?access_token=".urlencode($this->accessToken)."&start=".$this->getStartTimestamp()."&end=".$this->getEndTimestamp()."&branchOfSchool=".$this->branch."&fields=id,start,end,groups,lastModified,changeDescription,startTimeSlot,endTimeSlot,subjects,teachers,branchOfSchool,locations";
         }
 
         // check if appointment has changed
