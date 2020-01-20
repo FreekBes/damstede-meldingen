@@ -52,6 +52,8 @@
 	}
 
 	function allowedByScreen($screenID) {
+		/*
+		// er is nog maar 1 locatie. als voorbeeld blijft de code hieronder als comment staan.
 		global $screens;
 		if (isset($screens[$screenID])) {
 			$screen = $screens[$screenID];
@@ -74,6 +76,8 @@
 			// als de locatie onbekend is dan worden alle roosterwijzigingen weergegeven (1 t/m 6)
 			$allow = array(1,2,3,4,5,6);
 		}
+		*/
+		$allow = array(1,2,3,4,5,6);
 		return $allow;
 	}
 	
