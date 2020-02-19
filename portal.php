@@ -196,6 +196,11 @@
 				$toadd["content"] = "Laden...";
 				$toadd["src"] = null;
 			}
+			else if ($_POST["type"] == "buienradar") {
+				$toadd["title"] = "Buienradar";
+				$toadd["content"] = "Laden...";
+				$toadd["src"] = null;
+			}
 			else {
 				// onbekend type
 				break;
@@ -382,8 +387,10 @@
 									<td class="center nowrap"><a class="notoption" title="Melding verwijderen" href="javascript:void()" onclick="setDeleteFormValues('<?PHP echo $screen["name"]; ?> (<?PHP echo $screen["location"]; ?>)', '<?PHP echo $msg["id"]; ?>', '<?PHP echo addslashes(str_replace('"', '&quot;', $msg["title"])); ?>', '<video controls muted src=\'<?PHP echo $msg["src"]; ?>\' style=\'max-width: 420px; max-height: 420px;\' />'); showAction('notdeletor');">&#x1f5d1;</a></td>
 								<?PHP } else if ($msg["type"] == "zermelo") { ?>
 									<td class="center nowrap"><a class="notoption" title="Melding verwijderen" href="javascript:void()" onclick="setDeleteFormValues('<?PHP echo $screen["name"]; ?> (<?PHP echo $screen["location"]; ?>)', '<?PHP echo $msg["id"]; ?>', '<?PHP echo addslashes(str_replace('"', '&quot;', $msg["title"])); ?>', 'Geen voorbeeld om weer te geven'); showAction('notdeletor');">&#x1f5d1;</a></td>
+								<?PHP } else if ($msg["type"] == "buienradar") { ?>
+									<td class="center nowrap"><a class="notoption" title="Melding verwijderen" href="javascript:void()" onclick="setDeleteFormValues('<?PHP echo $screen["name"]; ?> (<?PHP echo $screen["location"]; ?>)', '<?PHP echo $msg["id"]; ?>', '<?PHP echo addslashes(str_replace('"', '&quot;', $msg["title"])); ?>', 'Geen voorbeeld om weer te geven'); showAction('notdeletor');">&#x1f5d1;</a></td>
 								<?PHP } ?>
-								<?PHP if ($msg["type"] == "default" || $msg["type"] == "image" || $msg["type"] == "zermelo") { ?>
+								<?PHP if ($msg["type"] == "default" || $msg["type"] == "image" || $msg["type"] == "zermelo" || $msg["type"] == "buienradar") { ?>
 									<td><?PHP echo $msg["title"]; ?></td>
 								<?PHP } else { ?>
 									<td></td>
@@ -394,7 +401,7 @@
 									<td><img src="<?PHP echo $msg["src"]; ?>" onclick="window.open('<?PHP echo $msg["src"]; ?>')" style="cursor: zoom-in;" /></td>
 								<?PHP } else if ($msg["type"] == "video") { ?>
 									<td><video src="<?PHP echo $msg["src"]; ?>" controls muted>Video kan niet worden weergegeven</video></td>
-								<?PHP } else if ($msg["type"] == "zermelo") { ?>
+								<?PHP } else if ($msg["type"] == "zermelo" || $msg["type"] == "buienradar") { ?>
 									<td>Geen voorbeeld om weer te geven</td>
 								<?PHP } ?>
 							</tr>
@@ -489,6 +496,8 @@
 											<?PHP } else if ($msg["type"] == "video") { ?>
 												<a class="notoption" title="Melding verwijderen" href="javascript:void()" onclick="setDeleteFormValues('<?PHP echo $screen["name"]; ?> (<?PHP echo $screen["location"]; ?>)', '<?PHP echo $msg["id"]; ?>', '<?PHP echo addslashes(str_replace('"', '&quot;', $msg["title"])); ?>', '<video controls muted src=\'<?PHP echo $msg["src"]; ?>\' style=\'max-width: 420px; max-height: 420px;\' />'); showAction('notdeletor');">&#x1f5d1;</a>
 											<?PHP } else if ($msg["type"] == "zermelo") { ?>
+												<td class="center nowrap"><a class="notoption" title="Melding verwijderen" href="javascript:void()" onclick="setDeleteFormValues('<?PHP echo $screen["name"]; ?> (<?PHP echo $screen["location"]; ?>)', '<?PHP echo $msg["id"]; ?>', '<?PHP echo addslashes(str_replace('"', '&quot;', $msg["title"])); ?>', 'Geen voorbeeld om weer te geven'); showAction('notdeletor');">&#x1f5d1;</a></td>
+											<?PHP } else if ($msg["type"] == "buienradar") { ?>
 												<td class="center nowrap"><a class="notoption" title="Melding verwijderen" href="javascript:void()" onclick="setDeleteFormValues('<?PHP echo $screen["name"]; ?> (<?PHP echo $screen["location"]; ?>)', '<?PHP echo $msg["id"]; ?>', '<?PHP echo addslashes(str_replace('"', '&quot;', $msg["title"])); ?>', 'Geen voorbeeld om weer te geven'); showAction('notdeletor');">&#x1f5d1;</a></td>
 											<?PHP } ?>
 										</div>
@@ -609,6 +618,7 @@
 								<input type="radio" id="image" name="type" value="image" /><label for="image">Afbeelding</label>
 								<input type="radio" id="video" name="type" value="video" /><label for="video">Video</label>
 								<input type="radio" id="zermelo" name="type" value="zermelo" /><label for="zermelo">Roosterwijzigingen</label>
+								<input type="radio" id="buienradar" name="type" value="buienradar" /><label for="buienradar">Buienradar</label>
 							</td>
 							<script>
 							var notType = document.getElementsByName("type");
@@ -620,6 +630,7 @@
 									var imageElems = document.getElementsByClassName("nottype-image");
 									var videoElems = document.getElementsByClassName("nottype-video");
 									var zermeloElems = document.getElementsByClassName("nottype-zermelo");
+									var buienradarElems = document.getElementsByClassName("nottype-buienradar");
 									for (j = 0; j < defaultElems.length; j++) {
 										defaultElems[j].style.display = "none";
 									}
@@ -631,6 +642,9 @@
 									}
 									for (j = 0; j < zermeloElems.length; j++) {
 										zermeloElems[j].style.display = "none";
+									}
+									for (j = 0; j < buienradarElems.length; j++) {
+										buienradarElems[j].style.display = "none";
 									}
 									switch (newType) {
 										case "default": {
@@ -657,6 +671,12 @@
 											}
 											break;
 										}
+										case "buienradar": {
+											for (j = 0; j < buienradarElems.length; j++) {
+												buienradarElems[j].style.display = "table-row";
+											}
+											break;
+										}
 									}
 								});
 							}
@@ -665,6 +685,10 @@
 						<tr class="nottype-zermelo" style="display: none;">
 							<th>Informatie</th>
 							<td class="nolh">Weergeeft als melding de roosterwijzigingen voor de desbetreffende locatie. Mede mogelijk gemaakt door Zermelo.</td>
+						</tr>
+						<tr class="nottype-buienradar" style="display: none;">
+							<th>Informatie</th>
+							<td class="nolh">Weergeeft als melding een buienradar. Mede mogelijk gemaakt door Buienradar.</td>
 						</tr>
 						<tr class="nottype-default">
 							<th>Titel</th>

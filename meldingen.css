@@ -133,6 +133,16 @@ h1 {
 	white-space: nowrap;
 }
 
+#buienradarframe {
+	display: inline-block;
+	pointer-events: none;
+	margin-top: 130px;
+	background-image: url('import/loading.gif');
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: 46px;
+}
+
 #msgoverflow {
 	display: block;
 	position: fixed;

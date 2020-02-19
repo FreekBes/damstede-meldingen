@@ -162,12 +162,15 @@
 			var num = <?PHP echo $num; ?>;
 			var total = <?PHP echo count($nots); ?>;
 			<?PHP
-				if ($msg["type"] != "image") {
+				if ($msg["type"] != "image" && $msg["type"] != "buienradar") {
 					$dur = round((strlen($msg["title"]) + strlen($msg["content"])) * 0.035);
 					if ($dur < 10) {
 						// melding minimaal 3 seconden weergeven
 						$dur = 10;
 					}
+				}
+				else if ($msg["type"] == "buienradar") {
+					$dur = 11;
 				}
 				else {
 					$dur = 20;
@@ -205,11 +208,23 @@
 						</div>
 					</div>
 				</div>
+			<?PHP } else if ($msg["type"] == "buienradar") { ?>
+				<h1 id="not-title"><?PHP echo $msg["title"]; ?></h1>
+				<!-- <iframe id="buienradarframe" src="https://gadgets.buienradar.nl/gadget/zoommap/?lat=52.4381&lng=4.95248&overname=2&zoom=13&naam=1454AM&size=3&voor=1" scrolling=no width=550 height=512 frameborder=no></iframe> -->
+				<img id="buienradarframe" width="500" height="512" src="https://image.buienradar.nl/2.0/image/animation/RadarMapRainNL?height=512&width=500&extension=gif&renderBackground=True&renderBranding=False&renderText=True&history=6&forecast=20&skip=1" alt="Fout" />
+				<script>
+				var buiFrame = document.getElementById("buienradarframe");
+				var buiWidth = parseInt(buiFrame.getAttribute("width"));
+				var buiHeight = parseInt(buiFrame.getAttribute("height"));
+				var buiScale = ((window.innerHeight - 180) / buiHeight).toFixed(2);
+				buiFrame.style.transform = "scale("+buiScale+")";
+				console.log("buiScale", buiScale);
+				</script>
 			<?PHP } ?>
 		</div>
 		<div class="msgcounter"><?PHP echo ($num + 1)."/".count($nots); ?></div>
 		<div id="msgoverflow" style="display: none;"></div>
-		<?PHP if ($msg["type"] != "video" && $msg["type"] != "zermelo" && !isset($_GET["no"])) { ?>
+		<?PHP if ($msg["type"] != "video" && $msg["type"] != "zermelo" && $msg["type"] != "buienradar" && !isset($_GET["no"])) { ?>
 			<!-- voeg &no toe aan de URL om niet automatisch naar de volgende melding te gaan -->
 			<script>
 				function startCountdown() {
@@ -276,6 +291,20 @@
 				// ga naar de volgende melding
 				window.location.href = window.location.href.split("&num")[0] + "&num=" + (num+1);
 			});
+			</script>
+		<?PHP } else if ($msg["type"] == "buienradar" && !isset($_GET["no"])) { ?>
+			<!-- voeg &no toe aan de URL om niet automatisch naar de volgende melding te gaan -->
+			<script>
+				function startCountdown() {
+					NProgress.start();
+					// stel progressie in op 100%, door de animatie duurt het even voordat dat daadwerkelijk zichtbaar is
+					NProgress.set(1);
+					setTimeout(function() {
+						NProgress.done(true);
+						// ga naar de volgende melding
+						window.location.href = window.location.href.split("&num")[0] + "&num=" + (num+1);
+					}, dur * 1000);
+				}
 			</script>
 		<?PHP } else if ($msg["type"] == "zermelo") { ?>
 			<script>
@@ -485,7 +514,7 @@
 				}
 			};
 			xhrz.send();
-			</script>
+			</script>	
 		<?PHP } ?>
 	<?PHP } else { ?>
 		<script>
