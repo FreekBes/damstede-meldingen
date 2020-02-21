@@ -187,7 +187,7 @@
 				showSpinner: false
 			});
 		</script>
-		<div class="msgcontainer<?PHP if ($msg["type"] != "default") { echo " centered"; } ?>">
+		<div id="msgcontainer" class="<?PHP if ($msg["type"] != "default") { echo " centered"; } ?>" style="display: none;">
 			<?PHP if ($msg["type"] == "default") { ?>
 				<h1 id="not-title"><?PHP echo $msg["title"]; ?></h1>
 				<div id="content">
@@ -236,6 +236,9 @@
 						// ga naar de volgende melding
 						window.location.href = window.location.href.split("&num")[0] + "&num=" + (num+1);
 					}, dur * 1000);
+					setTimeout(function() {
+						$("#msgcontainer").fadeOut(300);
+					}, dur * 1000 - 300);
 					
 					if (checkOverflow(document.getElementsByTagName("body")[0])) {
 						// als de tekst niet volledig op het scherm past, moet er automatisch worden gescrolld.
@@ -304,6 +307,9 @@
 						// ga naar de volgende melding
 						window.location.href = window.location.href.split("&num")[0] + "&num=" + (num+1);
 					}, dur * 1000);
+					setTimeout(function() {
+						$("#msgcontainer").fadeOut(300);
+					}, dur * 1000 - 300);
 				}
 			</script>
 		<?PHP } else if ($msg["type"] == "zermelo") { ?>
@@ -321,6 +327,9 @@
 					// ga naar de volgende melding
 					window.location.href = window.location.href.split("&num")[0] + "&num=" + (num+1);
 				}, dur * 1000);
+				setTimeout(function() {
+					$("#msgcontainer").fadeOut(300);
+				}, dur * 1000 - 300);
 				<?PHP } else { ?>
 				console.log("GET no is gegeven dus we gaan niet door naar de volgende melding.");
 				<?PHP } ?>
@@ -516,6 +525,7 @@
 			xhrz.send();
 			</script>	
 		<?PHP } ?>
+		<script> $("#msgcontainer").fadeIn(400); </script>
 	<?PHP } else { ?>
 		<script>
 		// zoek naar nieuwe meldingen over 5 seconden
@@ -530,8 +540,12 @@
 			window.location.reload();
 		};
 		</script>
-		<h1>Er zijn momenteel geen meldingen om weer te geven</h1>
-		<p>Zodra er nieuwe meldingen beschikbaar zijn zullen deze hier verschijnen.</p>
+		<div id="msgcontainer">
+			<h1 id="not-title">Er zijn momenteel geen meldingen om weer te geven</h1>
+			<div id="content">
+				<p>Zodra er nieuwe meldingen beschikbaar zijn zullen deze hier verschijnen.</p>
+			</div>
+		</div>
 	<?PHP } ?>
 	<script>
 	document.onkeypress = function (e) {

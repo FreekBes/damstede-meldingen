@@ -29,12 +29,12 @@ h1 {
 	font-size: 64px;
 }
 
-.msgcontainer {
+#msgcontainer {
 	display: block;
 	height: 100%;
 }
 
-.msgcontainer.centered {
+#msgcontainer.centered {
 	text-align: center;
 }
 
