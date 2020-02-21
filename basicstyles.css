@@ -11,7 +11,7 @@ html {
 }
 
 body {
-	background-color: #333333;
+	background-color: #141a1f;
 	color: #EDEDED;
 	font-family: Roboto, Verdana, Arial, Sans-Serif;
 	font-size: 17px;
@@ -24,11 +24,11 @@ body {
 }
 
 a, a:visited {
-	color: #07a2fc;
+	color: #b5131b;
 }
 
 a:hover {
-	color: #07deff;
+	color: #c90009;
 }
 
 select {
@@ -106,13 +106,13 @@ input[type=submit] {
 	border: none;
 	border-radius: 3px;
 	cursor: pointer;
-	background: #07a2fc;
+	background: #b5131b;
 	color: #EDEDED;
 	font-size: 17px;
 	transition: 0.15s;
 }
 
 input[type=submit]:hover {
-	background: #35B4FF;
+	background: #c90009;
 	transition: 0.05s;
 }

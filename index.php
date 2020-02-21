@@ -44,6 +44,6 @@
 		$latest_file = key($files);
 		$last_mod = filemtime($latest_file);
 	?>
-	<br><br><small style="color: #999999;">Ontwikkeld door <a href="https://freekb.es/" target="_blank" style="color: #07a2ac;">Freek Bes</a>. Laatste update: <?PHP echo date("j-n-Y, H:i:s", intval($last_mod)); ?></small>
+	<br><br><small style="color: #999999;">Ontwikkeld door <a href="https://freekb.es/" target="_blank">Freek Bes</a>. Laatste update: <?PHP echo date("j-n-Y, H:i:s", intval($last_mod)); ?></small>
 </body>
 </html>
