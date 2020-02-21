@@ -12,8 +12,8 @@ html {
 }
 
 body {
-	background-color: #333333;
-	color: #EDEDED;
+	background-color: #141a1f;
+	color: #E4E4E4;
 	font-family: Roboto, Helvetica, Verdana, Arial, Sans-Serif;
 	font-size: 48px;
 	box-sizing: border-box;
@@ -82,7 +82,8 @@ h1 {
 	right: 0px;
 	padding: 24px 36px;
 	z-index: 100;
-	text-shadow: 0 0 3px #000;
+	color: #7accca;
+	text-shadow: 0 0 3px #000000;
 	letter-spacing: 4px;
 }
 
@@ -150,7 +151,7 @@ h1 {
 	right: 0px;
 	bottom: 0px;
 	height: 120px;
-	background: linear-gradient(rgba(51,51,51,0), rgba(51,51,51,0.75), rgba(51,51,51,1));
+	background: linear-gradient(rgba(20,36,31,0), rgba(20,36,31,0.75), rgba(20,36,31,1));
 }
 
 #spinner {
@@ -164,14 +165,14 @@ h1 {
 	
 	border: 12px solid rgba(0,0,0,0);
 	border-top: 12px solid;
-	border-top-color: #4253F4;
+	border-top-color: #b5131b;
 	transition: border-top-color 1s;
 	border-radius: 60px;
 	animation: spin 0.65s linear infinite;
 }
 
 @keyframes spin {
-	0% { transform: rotate(0deg); border-top-color: #4253F4; }
-	50% { transform: rotate(180deg); border-top-color: #7a86f7; }
-	100% { transform: rotate(360deg); border-top-color: #4253F4; }
+	0% { transform: rotate(0deg); border-top-color: #b5131b; }
+	50% { transform: rotate(180deg); border-top-color: #b5131b; }
+	100% { transform: rotate(360deg); border-top-color: #b5131b; }
 }
