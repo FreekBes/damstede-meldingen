@@ -255,8 +255,8 @@
 							document.getElementById("not-title").style.right = "36px";
 							document.getElementById("not-title").style.textShadow = "0 0 8px #000";
 							document.getElementById("not-title").style.backgroundClip = "padding-box";
-							// document.getElementById("not-title").style.background = "linear-gradient(rgba(20,36,31,1), rgba(20,36,31,0))";
-							document.getElementById("not-title").style.background = "linear-gradient(rgba(20,36,31,1), rgba(20,36,31,1), rgba(20,36,31,1), rgba(20,36,31,1), rgba(20,36,31,0))";
+							// document.getElementById("not-title").style.background = "linear-gradient(rgba(20,26,31,1), rgba(20,26,31,0))";
+							document.getElementById("not-title").style.background = "linear-gradient(rgba(20,26,31,1), rgba(20,26,31,1), rgba(20,26,31,1), rgba(20,26,31,1), rgba(20,26,31,0))";
 							$('body,html').animate({scrollTop: $(document).height()}, dur * 800);
 						}, 2000);
 						
@@ -484,7 +484,7 @@
 									document.getElementById("not-title").style.right = "24px";
 									document.getElementById("not-title").style.textShadow = "0 0 8px #000";
 									document.getElementById("not-title").style.backgroundClip = "padding-box";
-									document.getElementById("not-title").style.background = "linear-gradient(rgba(20,36,31,1), rgba(20,36,31,0))";
+									document.getElementById("not-title").style.background = "linear-gradient(rgba(20,26,31,1), rgba(20,26,31,0))";
 									$('body,html').animate({scrollTop: $(document).height()}, dur * 1500);
 									// en duurt gek genoeg anderhalf de lengte dat het scherm in beeld blijft.
 									// ik weet niet of het een bug is, maar als het dezelfde waarde is dan scrollt hij te snel?
