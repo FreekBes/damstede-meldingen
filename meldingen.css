@@ -118,6 +118,10 @@ h1 {
 	color: #FF4500;
 }
 
+.rooster .changed {
+	color: #FFEE00;
+}
+
 .rooster td {
 	padding: 4px 8px;
 	vertical-align: text-top;

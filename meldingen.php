@@ -358,7 +358,7 @@
 							<?PHP if ($screen["name"] != "Docentenkamer") { ?>
 								// voor de docentenkamer is er een aparte roosterweergave die focust op docent ipv klas.
 								// dit is de versie die focust op klassen.
-								var rooster = "<table class='rooster'><tr><th>Klas</th><th>Lesuur</th><th>Vak &amp; docent</th><th>Lokaal</th><th>Wijziging</th></tr>";
+								var rooster = "<table class='rooster'><tr><th>Klas</th><th>Lesuur</th><th>Vak &amp; docent</th><th>Lokaal</th></tr>";
 								var now = new Date();
 								for (i = 0; i < response["data"].length; i++) {
 									var lesuur = response["data"][i];
@@ -367,81 +367,69 @@
 										continue;
 									}
 									rooster += "<tr class='";
-									if (lesuur['groups'][0] != '-') {
-										if (parseInt(lesuur["lastModified"]) > (now.getTime() - 3600000) / 1000 || lesuur['new'] === true) {
-											rooster += " recent";
+									if (parseInt(lesuur["lastModified"]) > (now.getTime() - 3600000) / 1000) {
+										rooster += " recent";
+									}
+									if (lesuur["cancelled"] === true) {
+										rooster += ' cancelled';
+									}
+									if (lesuur["new"] === true) {
+										rooster += ' changed';
+									}
+									rooster += "'>";
+									rooster += "<td"+(lesuur['groupChanged'] ? " class='changed'" : "")+">";
+									var groupsRowAmount = 0;
+									for (j = 0; j < lesuur["groups"].length; j++) {
+										rooster += lesuur["groups"][j].toUpperCase();
+										if (j != lesuur["groups"].length - 1) {
+											rooster += ', ';
 										}
-										if (lesuur["cancelled"] === true) {
-											rooster += ' cancelled';
+										groupsRowAmount++;
+										if (groupsRowAmount >= 4) {
+											groupsRowAmount = 0;
+											rooster += '<br>';
 										}
-										rooster += "'>";
-										rooster += "<td>";
-										var groupsRowAmount = 0;
-										for (j = 0; j < lesuur["groups"].length; j++) {
-											rooster += lesuur["groups"][j].toUpperCase();
-											if (j != lesuur["groups"].length - 1) {
-												rooster += ', ';
-											}
-											groupsRowAmount++;
-											if (groupsRowAmount >= 4) {
-												groupsRowAmount = 0;
-												rooster += '<br>';
-											}
-										}
-										rooster += "</td>";
-										if (lesuur['startTimeSlot'] != null) {
-											rooster += "<td class='nowrap'>"+lesuur['startTimeSlot']+"<sup>e</sup> uur</td>";
-										}
-										else {
-											var startTime = new Date(lesuur["start"] * 1000);
-											var endTime = new Date(lesuur["end"] * 1000);
-											rooster += "<td class='nowrap'>"+formatNumberTwoDigits(startTime.getHours())+":"+formatNumberTwoDigits(startTime.getMinutes())+"-"+formatNumberTwoDigits(endTime.getHours())+":"+formatNumberTwoDigits(endTime.getMinutes())+"</td>";
-										}
-										rooster += "<td>";
-										for (j = 0; j < lesuur["subjects"].length; j++) {
-											rooster += lesuur["subjects"][j];
-											if (j != lesuur["subjects"].length - 1) {
-												rooster += ', ';
-											}
-										}
-										if (lesuur['teachers'].length > 0) {
-											rooster += " <small>van</small> ";
-											for (j = 0; j < lesuur["teachers"].length; j++) {
-												rooster += lesuur["teachers"][j].toUpperCase();
-												if (j != lesuur["teachers"].length - 1) {
-													rooster += ', ';
-												}
-											}
-										}
-										rooster += "</td>";
-										rooster += "<td class='nowrap'>";
-										for (j = 0; j < lesuur["locations"].length; j++) {
-											rooster += lesuur["locations"][j].toUpperCase();
-											if (j != lesuur["locations"].length - 1) {
-												rooster += ', ';
-											}
-										}
-										rooster += "</td>";
-										if (lesuur['changeDescription'] != '' && lesuur['changeDescription'] != null) {
-											rooster += "<td>"+lesuur['changeDescription']+"</td>";
-										}
-										else if (lesuur['remark'] != '' && lesuur['remark'] != null) {
-											rooster += "<td>"+lesuur['remark']+"</td>";
-										}
-										else {
-											rooster += "<td></td>";
-										}
+									}
+									rooster += "</td>";
+									if (lesuur['startTimeSlot'] != null) {
+										rooster += "<td class='nowrap"+(lesuur['timeChanged'] ? " changed" : "")+"'>"+lesuur['startTimeSlot']+"<sup>e</sup> uur</td>";
 									}
 									else {
-										rooster += " class='recent'>";
-										rooster += "<td colspan='5'>"+lesuur['changeDescription']+"</td>";
+										var startTime = new Date(lesuur["start"] * 1000);
+										var endTime = new Date(lesuur["end"] * 1000);
+										rooster += "<td class='nowrap"+(lesuur['timeChanged'] ? " changed" : "")+"'>"+formatNumberTwoDigits(startTime.getHours())+":"+formatNumberTwoDigits(startTime.getMinutes())+"&ndash;"+formatNumberTwoDigits(endTime.getHours())+":"+formatNumberTwoDigits(endTime.getMinutes())+"</td>";
 									}
+									rooster += "<td"+(lesuur['teacherChanged'] ? " class='changed'" : "")+">";
+									for (j = 0; j < lesuur["subjects"].length; j++) {
+										rooster += lesuur["subjects"][j];
+										if (j != lesuur["subjects"].length - 1) {
+											rooster += ', ';
+										}
+									}
+									if (lesuur['teachers'].length > 0) {
+										rooster += " <small>van</small> ";
+										for (j = 0; j < lesuur["teachers"].length; j++) {
+											rooster += lesuur["teachers"][j].toUpperCase();
+											if (j != lesuur["teachers"].length - 1) {
+												rooster += ', ';
+											}
+										}
+									}
+									rooster += "</td>";
+									rooster += "<td class='nowrap"+(lesuur['locationChanged'] ? " changed" : "")+"'>";
+									for (j = 0; j < lesuur["locations"].length; j++) {
+										rooster += lesuur["locations"][j].toUpperCase();
+										if (j != lesuur["locations"].length - 1) {
+											rooster += ', ';
+										}
+									}
+									rooster += "</td>";
 									rooster += "</tr>";
 								}
 								rooster += "</table>";
 							<?PHP } else { ?>
 								// dit is de versie van de roosterweergave die focust op docenten.
-								var rooster = "<table class='rooster'><tr><th>Docent</th><th>Lesuur</th><th>Vak &amp; klas</th><th>Lokaal</th><th>Wijziging</th></tr>";
+								var rooster = "<table class='rooster'><tr><th>Docent</th><th>Lesuur</th><th>Vak &amp; klas</th><th>Lokaal</th></tr>";
 								var now = new Date();
 								for (i = 0; i < response["data"].length; i++) {
 									var lesuur = response["data"][i];
@@ -450,75 +438,63 @@
 										continue;
 									}
 									rooster += "<tr class='";
-									if (lesuur['teachers'][0] != '-') {
-										if (parseInt(lesuur["lastModified"]) > (now.getTime() - 3600000) / 1000 || lesuur['new'] === true) {
-											rooster += " recent";
+									if (parseInt(lesuur["lastModified"]) > (now.getTime() - 3600000) / 1000) {
+										rooster += " recent";
+									}
+									if (lesuur['cancelled'] === true) {
+										rooster += ' cancelled';
+									}
+									if (lesuur["new"] === true) {
+										rooster += ' changed';
+									}
+									rooster += "'>";
+									rooster += "<td"+(lesuur['teacherChanged'] ? " class='changed'" : "")+">";
+									var teacherRowAmount = 0;
+									for (j = 0; j < lesuur["teachers"].length; j++) {
+										rooster += lesuur["teachers"][j].toUpperCase();
+										if (j != lesuur["teachers"].length - 1) {
+											rooster += ', ';
 										}
-										if (lesuur['cancelled'] === true) {
-											rooster += ' cancelled';
+										teacherRowAmount++;
+										if (teacherRowAmount >= 4) {
+											rooster += '<br>';
+											teacherRowAmount = 0;
 										}
-										rooster += "'>";
-										rooster += "<td>";
-										var teacherRowAmount = 0;
-										for (j = 0; j < lesuur["teachers"].length; j++) {
-											rooster += lesuur["teachers"][j].toUpperCase();
-											if (j != lesuur["teachers"].length - 1) {
-												rooster += ', ';
-											}
-											teacherRowAmount++;
-											if (teacherRowAmount >= 4) {
-												rooster += '<br>';
-												teacherRowAmount = 0;
-											}
-										}
-										rooster += "</td>";
-										if (lesuur['startTimeSlot'] != null) {
-											rooster += "<td class='nowrap'>"+lesuur['startTimeSlot']+"<sup>e</sup> uur</td>";
-										}
-										else {
-											var startTime = new Date(lesuur["start"] * 1000);
-											var endTime = new Date(lesuur["end"] * 1000);
-											rooster += "<td class='nowrap'>"+formatNumberTwoDigits(startTime.getHours())+":"+formatNumberTwoDigits(startTime.getMinutes())+"-"+formatNumberTwoDigits(endTime.getHours())+":"+formatNumberTwoDigits(endTime.getMinutes())+"</td>";
-										}
-										rooster += "<td>";
-										for (j = 0; j < lesuur["subjects"].length; j++) {
-											rooster += lesuur["subjects"][j];
-											if (j != lesuur["subjects"].length - 1) {
-												rooster += ', ';
-											}
-										}
-										if (lesuur['groups'].length > 0) {
-											rooster += " <small>aan</small> ";
-											for (j = 0; j < lesuur["groups"].length; j++) {
-												rooster += lesuur["groups"][j].toUpperCase();
-												if (j != lesuur["groups"].length - 1) {
-													rooster += ', ';
-												}
-											}
-										}
-										rooster += "</td>";
-										rooster += "<td class='nowrap'>";
-										for (j = 0; j < lesuur["locations"].length; j++) {
-											rooster += lesuur["locations"][j].toUpperCase();
-											if (j != lesuur["locations"].length - 1) {
-												rooster += ', ';
-											}
-										}
-										rooster += "</td>";
-										if (lesuur['changeDescription'] != '' && lesuur['changeDescription'] != null) {
-											rooster += "<td>"+lesuur['changeDescription']+"</td>";
-										}
-										else if (lesuur['remark'] != '' && lesuur['remark'] != null) {
-											rooster += "<td>"+lesuur['remark']+"</td>";
-										}
-										else {
-											rooster += "<td></td>";
-										}
+									}
+									rooster += "</td>";
+									if (lesuur['startTimeSlot'] != null) {
+										rooster += "<td class='nowrap"+(lesuur['timeChanged'] ? " changed" : "")+"'>"+lesuur['startTimeSlot']+"<sup>e</sup> uur</td>";
 									}
 									else {
-										rooster += " class='recent'>";
-										rooster += "<td colspan='5'>"+lesuur['changeDescription']+"</td>";
+										var startTime = new Date(lesuur["start"] * 1000);
+										var endTime = new Date(lesuur["end"] * 1000);
+										rooster += "<td class='nowrap"+(lesuur['timeChanged'] ? " changed" : "")+"'>"+formatNumberTwoDigits(startTime.getHours())+":"+formatNumberTwoDigits(startTime.getMinutes())+"&ndash;"+formatNumberTwoDigits(endTime.getHours())+":"+formatNumberTwoDigits(endTime.getMinutes())+"</td>";
 									}
+									rooster += "<td"+(lesuur['groupChanged'] ? " class='changed'" : "")+">";
+									for (j = 0; j < lesuur["subjects"].length; j++) {
+										rooster += lesuur["subjects"][j];
+										if (j != lesuur["subjects"].length - 1) {
+											rooster += ', ';
+										}
+									}
+									if (lesuur['groups'].length > 0) {
+										rooster += " <small>aan</small> ";
+										for (j = 0; j < lesuur["groups"].length; j++) {
+											rooster += lesuur["groups"][j].toUpperCase();
+											if (j != lesuur["groups"].length - 1) {
+												rooster += ', ';
+											}
+										}
+									}
+									rooster += "</td>";
+									rooster += "<td class='nowrap"+(lesuur['locationChanged'] ? " changed" : "")+"'>";
+									for (j = 0; j < lesuur["locations"].length; j++) {
+										rooster += lesuur["locations"][j].toUpperCase();
+										if (j != lesuur["locations"].length - 1) {
+											rooster += ', ';
+										}
+									}
+									rooster += "</td>";
 									rooster += "</tr>"
 								}
 								rooster += "</table>";

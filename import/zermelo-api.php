@@ -69,13 +69,13 @@
 
         // get the api url
         private function getApiUrl() {
-            return "https://".$this->subdomain.".zportal.nl/api/v3/appointments?access_token=".urlencode($this->accessToken)."&valid=true&start=".$this->getStartTimestamp()."&end=".$this->getEndTimestamp()."&branchOfSchool=".$this->branch."&fields=id,appointmentInstance,start,end,startTimeSlot,endTimeSlot,subjects,teachers,locations,groups,lastModified,new,cancelled,teacherChanged,groupChanged,locationChanged,timeChanged,changeDescription,remark";
+            return "https://".$this->subdomain.".zportal.nl/api/v3/appointments?access_token=".urlencode($this->accessToken)."&valid=true&start=".$this->getStartTimestamp()."&end=".$this->getEndTimestamp()."&branchOfSchool=".$this->branch."&fields=id,appointmentInstance,start,end,startTimeSlot,endTimeSlot,subjects,teachers,locations,groups,lastModified,new,cancelled,teacherChanged,groupChanged,locationChanged,timeChanged,changeDescription";
         }
 
         // check if appointment has changed
         private function isInvalidForReturn($a) {
             return (
-                (empty($a["changeDescription"]) && empty($a["remark"]))
+                empty($a["changeDescription"])
             );
         }
 
