@@ -148,6 +148,10 @@
 
 		return isOverflowing;
 	}
+
+	function formatNumberTwoDigits(num) {
+		return ("0" + num).slice(-2);
+	}
 	</script>
 </head>
 <body onload="startCountdown();" style="<?PHP if (isset($_GET["preview"])) { echo "zoom: 0.26;"; } ?>">
@@ -364,22 +368,35 @@
 									}
 									rooster += "<tr class='";
 									if (lesuur['groups'][0] != '-') {
-										if (parseInt(lesuur["lastModified"]) > (now.getTime() - 3600000) / 1000) {
+										if (parseInt(lesuur["lastModified"]) > (now.getTime() - 3600000) / 1000 || lesuur['new'] === true) {
 											rooster += " recent";
 										}
-										if (lesuur['changeDescription'] == "Les vervalt") {
+										if (lesuur["cancelled"] === true) {
 											rooster += ' cancelled';
 										}
 										rooster += "'>";
 										rooster += "<td>";
+										var groupsRowAmount = 0;
 										for (j = 0; j < lesuur["groups"].length; j++) {
 											rooster += lesuur["groups"][j].toUpperCase();
 											if (j != lesuur["groups"].length - 1) {
 												rooster += ', ';
 											}
+											groupsRowAmount++;
+											if (groupsRowAmount >= 4) {
+												groupsRowAmount = 0;
+												rooster += '<br>';
+											}
 										}
 										rooster += "</td>";
-										rooster += "<td class='nowrap'>"+lesuur['startTimeSlot']+"<sup>e</sup> uur</td>";
+										if (lesuur['startTimeSlot'] != null) {
+											rooster += "<td class='nowrap'>"+lesuur['startTimeSlot']+"<sup>e</sup> uur</td>";
+										}
+										else {
+											var startTime = new Date(lesuur["start"] * 1000);
+											var endTime = new Date(lesuur["end"] * 1000);
+											rooster += "<td class='nowrap'>"+formatNumberTwoDigits(startTime.getHours())+":"+formatNumberTwoDigits(startTime.getMinutes())+"-"+formatNumberTwoDigits(endTime.getHours())+":"+formatNumberTwoDigits(endTime.getMinutes())+"</td>";
+										}
 										rooster += "<td>";
 										for (j = 0; j < lesuur["subjects"].length; j++) {
 											rooster += lesuur["subjects"][j];
@@ -405,7 +422,15 @@
 											}
 										}
 										rooster += "</td>";
-										rooster += "<td>"+lesuur['changeDescription']+"</td>";
+										if (lesuur['changeDescription'] != '' && lesuur['changeDescription'] != null) {
+											rooster += "<td>"+lesuur['changeDescription']+"</td>";
+										}
+										else if (lesuur['remark'] != '' && lesuur['remark'] != null) {
+											rooster += "<td>"+lesuur['remark']+"</td>";
+										}
+										else {
+											rooster += "<td></td>";
+										}
 									}
 									else {
 										rooster += " class='recent'>";
@@ -426,22 +451,35 @@
 									}
 									rooster += "<tr class='";
 									if (lesuur['teachers'][0] != '-') {
-										if (parseInt(lesuur["lastModified"]) > (now.getTime() - 3600000) / 1000) {
+										if (parseInt(lesuur["lastModified"]) > (now.getTime() - 3600000) / 1000 || lesuur['new'] === true) {
 											rooster += " recent";
 										}
-										if (lesuur['changeDescription'] == "Les vervalt") {
+										if (lesuur['cancelled'] === true) {
 											rooster += ' cancelled';
 										}
 										rooster += "'>";
 										rooster += "<td>";
+										var teacherRowAmount = 0;
 										for (j = 0; j < lesuur["teachers"].length; j++) {
 											rooster += lesuur["teachers"][j].toUpperCase();
 											if (j != lesuur["teachers"].length - 1) {
 												rooster += ', ';
 											}
+											teacherRowAmount++;
+											if (teacherRowAmount >= 4) {
+												rooster += '<br>';
+												teacherRowAmount = 0;
+											}
 										}
 										rooster += "</td>";
-										rooster += "<td class='nowrap'>"+lesuur['startTimeSlot']+"<sup>e</sup> uur</td>";
+										if (lesuur['startTimeSlot'] != null) {
+											rooster += "<td class='nowrap'>"+lesuur['startTimeSlot']+"<sup>e</sup> uur</td>";
+										}
+										else {
+											var startTime = new Date(lesuur["start"] * 1000);
+											var endTime = new Date(lesuur["end"] * 1000);
+											rooster += "<td class='nowrap'>"+formatNumberTwoDigits(startTime.getHours())+":"+formatNumberTwoDigits(startTime.getMinutes())+"-"+formatNumberTwoDigits(endTime.getHours())+":"+formatNumberTwoDigits(endTime.getMinutes())+"</td>";
+										}
 										rooster += "<td>";
 										for (j = 0; j < lesuur["subjects"].length; j++) {
 											rooster += lesuur["subjects"][j];
@@ -467,7 +505,15 @@
 											}
 										}
 										rooster += "</td>";
-										rooster += "<td>"+lesuur['changeDescription']+"</td>";
+										if (lesuur['changeDescription'] != '' && lesuur['changeDescription'] != null) {
+											rooster += "<td>"+lesuur['changeDescription']+"</td>";
+										}
+										else if (lesuur['remark'] != '' && lesuur['remark'] != null) {
+											rooster += "<td>"+lesuur['remark']+"</td>";
+										}
+										else {
+											rooster += "<td></td>";
+										}
 									}
 									else {
 										rooster += " class='recent'>";
