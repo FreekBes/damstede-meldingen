@@ -353,10 +353,15 @@
 						if (response["data"].length > 0) {
 							<?PHP if ($screen["name"] != "Docentenkamer") { ?>
 								// voor de docentenkamer is er een aparte roosterweergave die focust op docent ipv klas.
+								// dit is de versie die focust op klassen.
 								var rooster = "<table class='rooster'><tr><th>Klas</th><th>Lesuur</th><th>Vak &amp; docent</th><th>Lokaal</th><th>Wijziging</th></tr>";
 								var now = new Date();
 								for (i = 0; i < response["data"].length; i++) {
 									var lesuur = response["data"][i];
+									// als er geen klassen zijn ingesteld voor een lesuur, hoeft de wijziging niet worden weergegeven.
+									if (lesuur['groups'].length == 0) {
+										continue;
+									}
 									rooster += "<tr class='";
 									if (lesuur['groups'][0] != '-') {
 										if (parseInt(lesuur["lastModified"]) > (now.getTime() - 3600000) / 1000) {
@@ -382,11 +387,13 @@
 												rooster += ', ';
 											}
 										}
-										rooster += " <small>van</small> ";
-										for (j = 0; j < lesuur["teachers"].length; j++) {
-											rooster += lesuur["teachers"][j].toUpperCase();
-											if (j != lesuur["teachers"].length - 1) {
-												rooster += ', ';
+										if (lesuur['teachers'].length > 0) {
+											rooster += " <small>van</small> ";
+											for (j = 0; j < lesuur["teachers"].length; j++) {
+												rooster += lesuur["teachers"][j].toUpperCase();
+												if (j != lesuur["teachers"].length - 1) {
+													rooster += ', ';
+												}
 											}
 										}
 										rooster += "</td>";
@@ -408,10 +415,15 @@
 								}
 								rooster += "</table>";
 							<?PHP } else { ?>
+								// dit is de versie van de roosterweergave die focust op docenten.
 								var rooster = "<table class='rooster'><tr><th>Docent</th><th>Lesuur</th><th>Vak &amp; klas</th><th>Lokaal</th><th>Wijziging</th></tr>";
 								var now = new Date();
 								for (i = 0; i < response["data"].length; i++) {
 									var lesuur = response["data"][i];
+									// als er geen docenten zijn ingesteld voor een lesuur, hoeft de wijziging niet worden weergegeven.
+									if (lesuur['teachers'].length == 0) {
+										continue;
+									}
 									rooster += "<tr class='";
 									if (lesuur['teachers'][0] != '-') {
 										if (parseInt(lesuur["lastModified"]) > (now.getTime() - 3600000) / 1000) {
@@ -437,11 +449,13 @@
 												rooster += ', ';
 											}
 										}
-										rooster += " <small>aan</small> ";
-										for (j = 0; j < lesuur["groups"].length; j++) {
-											rooster += lesuur["groups"][j].toUpperCase();
-											if (j != lesuur["groups"].length - 1) {
-												rooster += ', ';
+										if (lesuur['groups'].length > 0) {
+											rooster += " <small>aan</small> ";
+											for (j = 0; j < lesuur["groups"].length; j++) {
+												rooster += lesuur["groups"][j].toUpperCase();
+												if (j != lesuur["groups"].length - 1) {
+													rooster += ', ';
+												}
 											}
 										}
 										rooster += "</td>";
