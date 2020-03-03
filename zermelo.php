@@ -1,5 +1,10 @@
 <?PHP
 	error_reporting(1); ini_set('display_errors', 1);
+
+	/*
+	*	De code voor deze Zermelo API wrapper valt verder te vinden in
+	*	./import/zermelo-api.php
+	*/
 	
 	require_once("import/nogit.php");
 	require_once("import/zermelo-api.php");

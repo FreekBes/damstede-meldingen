@@ -1,6 +1,12 @@
 <?PHP
     error_reporting(1); ini_set('display_errors', 1);
 
+    /*
+    *   This is a simple API wrapper written by Freek Bes for the Zermelo API.
+    *   Documentation for the Zermelo API is available at developers.zermelo.nl
+    *   or at schoolnaam.zportal.nl/static/swagger/
+    */
+
     class Zermelo {
         // the subdomain for zermelo: ex. damstedelyceum.zportal.nl
         private $subdomain = null;
@@ -63,12 +69,14 @@
 
         // get the api url
         private function getApiUrl() {
-            return "https://".$this->subdomain.".zportal.nl/api/v3/appointments?access_token=".urlencode($this->accessToken)."&start=".$this->getStartTimestamp()."&end=".$this->getEndTimestamp()."&branchOfSchool=".$this->branch."&fields=id,start,end,groups,lastModified,changeDescription,startTimeSlot,endTimeSlot,subjects,teachers,branchOfSchool,locations";
+            return "https://".$this->subdomain.".zportal.nl/api/v3/appointments?access_token=".urlencode($this->accessToken)."&start=".$this->getStartTimestamp()."&end=".$this->getEndTimestamp()."&branchOfSchool=".$this->branch."&fields=id,appointmentInstance,valid,start,end,groups,lastModified,changeDescription,startTimeSlot,endTimeSlot,subjects,teachers,branchOfSchool,locations";
         }
 
         // check if appointment has changed
-        private function hasNotChanged($a) {
+        private function isInvalidForReturn($a) {
             return (
+                $a["valid"] === false
+                ||
                 empty($a["changeDescription"])
             );
         }
@@ -76,6 +84,7 @@
         // retrieve all appointments for a certain time period
         // boolean to set whether to return all appointments or only changed ones
         private function getAppointmentsFromAPI($onlyChanged) {
+            // retrieve appointments from Zermelo
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $this->getApiUrl());
             curl_setopt($ch, CURLOPT_FRESH_CONNECT, TRUE);
@@ -86,9 +95,11 @@
             $json = json_decode($result, true);
             $schedule = $json["response"]["data"];
             $scheduleCount = count($schedule);
+
+            // check if appointments have actually changed
             if ($onlyChanged) {
                 for ($i = 0; $i < $scheduleCount; $i++) {
-                    if ($this->hasNotChanged($schedule[$i])) {
+                    if ($this->isInvalidForReturn($schedule[$i])) {
                         unset($schedule[$i]);
                     }
                 }
