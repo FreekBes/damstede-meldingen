@@ -131,5 +131,10 @@
                 return $appointments;
             }
         }
+
+        // only use for debugging
+        public function getAllAppointments() {
+            return $this->getAppointmentsFromAPI(false);
+        }
     }
 ?>

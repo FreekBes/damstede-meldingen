@@ -18,9 +18,6 @@
 	header("Cache-Control: post-check=0, pre-check=0", false);
 	header("Pragma: no-cache");
 	
-	// verkrijg alle beschikbare schermen
-	$screens = json_decode(file_get_contents("screens.json"), true);
-	
 	$data = array();
 	$data["type"] = "error";
 	$data["message"] = "Unknown error";
@@ -56,54 +53,14 @@
 		die();
 	}
 
-	function allowedByScreen($screenID) {
-		/*
-		// er is nog maar 1 locatie. als voorbeeld blijft de code hieronder als comment staan.
-		global $screens;
-		if (isset($screens[$screenID])) {
-			$screen = $screens[$screenID];
-			if ($screen["name"] != "Docentenkamer") {
-				if ($screen["location"] == "Hoofdgebouw") {
-					// in het hoofdgebouw hoeven enkel roosterwijzigingen voor de 3e t/m de 6e klas te worden weergegeven.
-					$allow = array(3,4,5,6);
-				}
-				else {
-					// op andere locaties hoeven enkel roosterwijzigingen voor de 1e en 2e klas te worden weergegeven.
-					$allow = array(1,2);
-				}
-			}
-			else {
-				// in de docentenkamer moeten roosterwijzigingen voor de 1e t/m de 6e klas worden weergegeven.
-				$allow = array(1,2,3,4,5,6);
-			}
-		}
-		else {
-			// als de locatie onbekend is dan worden alle roosterwijzigingen weergegeven (1 t/m 6)
-			$allow = array(1,2,3,4,5,6);
-		}
-		*/
-		$allow = array(1,2,3,4,5,6);
-		return $allow;
+	if (isset($_GET["allvalid"])) {
+		// alleen voor debuggen!
+		$appointments = $zermeloAPI->getAllAppointments();
 	}
-	
-	function filterByScreen($json, $screenID) {
-		$allowed = allowedByScreen($screenID);
-		for($i = 0; $i < count($json); $i++) {
-			$isAllowed = array();
-			for ($j = 0; $j < count($json[$i]["groups"]); $j++) {
-				$group = intval(preg_replace('/[^0-9]/', '', explode(".", $json[$i]["groups"][$j])[0]));
-				array_push($isAllowed, in_array($group, $allowed));
-			}
-			if (!in_array(true, $isAllowed)) {
-				unset($json[$i]);
-			}
-		}
-		$json = array_values($json);
-		return $json;
+	else {
+		$appointments = $zermeloAPI->getAppointments();
 	}
 
-	$appointments = $zermeloAPI->getAppointments();
-	$appointments = filterByScreen($appointments, $_GET["screen"]);
 	$appointmentCount = count($appointments);
 	if ($appointmentCount > 0) {
 		returnData($appointmentCount . " lesuren gevonden", $appointments);

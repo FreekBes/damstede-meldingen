@@ -392,7 +392,11 @@
 									}
 									rooster += "</td>";
 									if (lesuur['startTimeSlot'] != null) {
-										rooster += "<td class='nowrap"+(lesuur['timeChanged'] ? " changed" : "")+"'>"+lesuur['startTimeSlot']+"<sup>e</sup> uur</td>";
+										rooster += "<td class='nowrap"+(lesuur['timeChanged'] ? " changed" : "")+"'>"+lesuur['startTimeSlot']+"<sup>e</sup>";
+										if (lesuur['startTimeSlot'] != lesuur['endTimeSlot']) {
+											rooster += "&ndash;" + lesuur['endTimeSlot']+"<sup>e</sup>";
+										}
+										rooster += " uur</td>";
 									}
 									else {
 										var startTime = new Date(lesuur["start"] * 1000);
@@ -463,7 +467,11 @@
 									}
 									rooster += "</td>";
 									if (lesuur['startTimeSlot'] != null) {
-										rooster += "<td class='nowrap"+(lesuur['timeChanged'] ? " changed" : "")+"'>"+lesuur['startTimeSlot']+"<sup>e</sup> uur</td>";
+										rooster += "<td class='nowrap"+(lesuur['timeChanged'] ? " changed" : "")+"'>"+lesuur['startTimeSlot']+"<sup>e</sup>";
+										if (lesuur['startTimeSlot'] != lesuur['endTimeSlot']) {
+											rooster += "&ndash;" + lesuur['endTimeSlot']+"<sup>e</sup>";
+										}
+										rooster += " uur</td>";
 									}
 									else {
 										var startTime = new Date(lesuur["start"] * 1000);
