@@ -85,6 +85,20 @@ h1 {
 	color: #7accca;
 	text-shadow: 0 0 3px #000000;
 	letter-spacing: 4px;
+	text-align: right;
+}
+
+#timebox {
+	display: block;
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	padding: 24px 36px;
+	z-index: 100;
+	color: #7accca;
+	text-shadow: 0 0 3px #000000;
+	letter-spacing: 4px;
+	text-align: left;
 }
 
 #not-title {

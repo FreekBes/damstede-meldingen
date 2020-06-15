@@ -593,6 +593,15 @@
 			</div>
 		</div>
 	<?PHP } ?>
+	<div id="timebox"><?PHP echo date("H:i"); ?></div>
+	<script>
+	setInterval(function() {
+		var curTime = new Date();
+		var curHrs = curTime.getHours();
+		var curMins = curTime.getMinutes();
+		document.getElementById("timebox").innerHTML = ('0'  + curHrs).slice(-2)+':'+('0' + curMins).slice(-2);
+	}, 1000);
+	</script>
 	<script>
 	document.onkeypress = function (e) {
 		e = e || window.event;
