@@ -4,6 +4,7 @@ html {
 	height: 100%;
 	overflow-x: hidden;
 	overflow-y: hidden;
+	cursor: none;
 }
 
 html {
@@ -104,6 +105,7 @@ h1 {
 #not-title {
 	margin: 0px;
 	padding: 42px 0px 32px 0px;
+	z-index: 400;
 }
 
 #content {
@@ -155,11 +157,16 @@ h1 {
 #buienradarframe {
 	display: inline-block;
 	pointer-events: none;
-	margin-top: 130px;
 	background-image: url('import/loading.gif');
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-size: 46px;
+	object-fit: contain;
+	width: 100%;
+	height: 100%;
+	height: calc(100% - 200px);
+	height: -webkit-calc(100% - 200px);
+	height: -moz-calc(100% - 200px);
 }
 
 #msgoverflow {

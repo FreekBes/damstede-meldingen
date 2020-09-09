@@ -216,16 +216,6 @@
 				<h1 id="not-title"><?PHP echo $msg["title"]; ?></h1>
 				<!-- <iframe id="buienradarframe" src="https://gadgets.buienradar.nl/gadget/zoommap/?lat=52.4381&lng=4.95248&overname=2&zoom=13&naam=1454AM&size=3&voor=1" scrolling=no width=550 height=512 frameborder=no></iframe> -->
 				<img id="buienradarframe" width="500" height="512" src="https://image.buienradar.nl/2.0/image/animation/RadarMapRainNL?height=512&width=500&extension=gif&renderBackground=True&renderBranding=False&renderText=True&history=6&forecast=20&skip=1" alt="Fout" />
-				<?PHP if (!isset($_GET["preview"])) { ?>
-				<script>
-				var buiFrame = document.getElementById("buienradarframe");
-				var buiWidth = parseInt(buiFrame.getAttribute("width"));
-				var buiHeight = parseInt(buiFrame.getAttribute("height"));
-				var buiScale = ((window.innerHeight - 151) / buiHeight).toFixed(2);
-				buiFrame.style.transform = "scale("+buiScale+")";
-				console.log("buiScale", buiScale);
-				</script>
-				<?PHP } ?>
 			<?PHP } ?>
 		</div>
 		<div class="msgcounter"><?PHP echo ($num + 1)."/".count($nots); ?></div>
