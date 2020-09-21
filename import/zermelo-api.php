@@ -74,9 +74,7 @@
 
         // check if appointment has changed
         private function isInvalidForReturn($a) {
-            return (
-                empty($a["changeDescription"])
-            );
+            return !($a["cancelled"] || $a["teacherChanged"] || $a["groupChanged"] || $a["locationChanged"] || $a["timeChanged"] || $a["new"]);
         }
 
         // retrieve all appointments for a certain time period
